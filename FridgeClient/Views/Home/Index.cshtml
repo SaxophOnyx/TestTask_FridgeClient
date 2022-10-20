@@ -1,8 +1,13 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using FridgeClient.ViewModels.Home;
+@model IndexViewModel;
+@{
+    ViewBag.Title = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="centeringBlock">
+    <a asp-controller="Fridge" asp-action="FillFridges" class="addnewbutton">Fill Fridges</a>
+    <br>
+    <label class="headerLabel">Home</label>
+    <br>
+    <label class="textLabel">This is a simple client for FridgeAPI</label>
 </div>
