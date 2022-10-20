@@ -1,0 +1,29 @@
+﻿@using FridgeClient.ViewModels.Product;
+@model NewViewModel
+@{
+    ViewBag.Title = "Creating New Product...";
+}
+
+<form asp-action="New" asp-controller="Product" method="post">
+    <p>
+        <label class="textLabel">Product name</label>
+        <br>
+        <input asp-for="@Model.Name" class="inputField"/>
+        <span asp-validation-for="@Model.Name" />
+    </p>
+    <p>
+        <label class="textLabel">Default quantity</label>
+        <br>
+        <input asp-for="@Model.DefaultQuantity" class="inputField"/>
+        <br>
+        <span asp-validation-for="@Model.DefaultQuantity" />
+    </p>
+    <p>
+        <input type="submit" value="Add" class="savebutton"/>
+    </p>
+</form>
+
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

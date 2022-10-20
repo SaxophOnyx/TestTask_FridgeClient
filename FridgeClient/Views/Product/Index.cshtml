@@ -1,0 +1,40 @@
+﻿@using FridgeClient.ViewModels.Product;
+@model IndexViewModel
+@{
+    ViewBag.Title = "Products";
+}
+
+<div class="centeringBlock">
+    <a asp-controller="Product" asp-action="New" class="addnewbutton">Add new product</a>
+    <br>
+    <label class="headerLabel">List of Products</label>
+    <br>
+    @{
+        if (Model.Products.Any())
+        {
+            <table class="tableclass">
+                <tr>
+                    <th class="headcell">Name</th>
+                    <th class="headcell">Default quantity</th>
+                    <th class="headcell">Controls</th>
+                </tr>
+                @{
+                    foreach (var item in Model.Products)
+                    {
+                        <tr>
+                            <td class="cell">@item.Name</td>
+                            <td class="cell">@item.DefaultQuantity</td>
+                            <td class="controlcell">
+                                <a asp-controller="Product" asp-action="Delete" asp-route-id=@item.Id class="controlref" onclick="return DeleteConfirmation();">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+        }
+        else
+        {
+            <label class="textLabel">There is nothing here...</label>
+        }
+    }
+</div>

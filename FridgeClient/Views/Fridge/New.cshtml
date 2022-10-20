@@ -1,0 +1,68 @@
+﻿@using FridgeClient.ViewModels.Fridge;
+@model NewViewModel;
+@{
+    ViewBag.Title = "Adding new fridge...";
+}
+
+<div class="vertblocks">
+    <div class="vertblock_1">
+    </div>
+    <div class="vertblock_2">
+        <form asp-action="Edit" asp-controller="Fridge" method="post">
+            <div class="centeringBlock">
+                <label class="textLabel">Products</label>
+            </div>
+            <table class="tableclass">
+                <tr>
+                    <td class="headcell">Product Name</td>
+                    <td class="headcell">Quantity</td>
+                </tr>
+                @{
+                    for (int i = 0; i < Model.AvaliableProducts.Count; ++i)
+                    {
+                        <tr>
+                            <td class="cell">@Model.AvaliableProducts[i].ProductName</td>
+                            <td class="cell">
+                                <input asp-for="@Model.AvaliableProducts[i].Quantity" type="number" class="inputField" />
+                                <input hidden asp-for="@Model.AvaliableProducts[i].ProductId">
+                                <input hidden asp-for="@Model.AvaliableProducts[i].Id">
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+
+            <div class="propsBlock">
+                <div class="centeringBlock">
+                    <label class="textLabel">Properties</label>
+                </div>
+                <p>
+                    <label class="inputLabel">Fridge Name</label><br>
+                    <input asp-for="@Model.FridgeName" class="inputField" />
+                    <span asp-validation-for="@Model.FridgeName" />
+                </p>
+                <p>
+                    <label class="inputLabel">Owner's Name</label><br>
+                    <input asp-for="@Model.OwnerName" class="inputField" />
+                    <span asp-validation-for="@Model.OwnerName" />
+                </p>
+                <p>
+                    <label class="inputLabel">Model</label><br>
+                    <select asp-for="@Model.FridgeModelId" asp-items=@Model.AvaliableFridgeModels class="inputField"></select>
+                    <span asp-validation-for="@Model.FridgeModelId" />
+                </p>
+            </div>
+
+            <div class="centeringBlock">
+                <input type="submit" value="Save" class="savebutton" />
+            </div>
+        </form>
+    </div>
+    <div class="vertblock_3">
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

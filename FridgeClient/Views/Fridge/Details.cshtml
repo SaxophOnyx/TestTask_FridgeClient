@@ -1,0 +1,34 @@
+﻿@using FridgeClient.ViewModels.Fridge;
+@model DetailsViewModel
+@{
+    ViewBag.Title = "Fridge details...";
+}
+
+<div class="centeringBlock">
+    <label class="headerLabel">Products</label>
+    <br>
+    @{
+        if (Model.Products.Any())
+        {
+            <table class="tableclass">
+                <tr>
+                    <th class="headcell">Name</th>
+                    <th class="headcell">Quantity</th>
+                </tr>
+                @{
+                    foreach (var item in Model.Products)
+                    {
+                        <tr>
+                            <td class="cell">@item.ProductName</td>
+                            <td class="cell">@item.Quantity</td>
+                        </tr>
+                    }
+                }
+            </table>
+        }
+        else
+        {
+            <label class="textLabel">There is nothing here...</label>
+        }
+    }
+</div>
